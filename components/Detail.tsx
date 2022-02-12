@@ -1,7 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
 
 type Props = {
   title: string
+  button: string
+  button2: string
+  button_href: string
+  button2_href: string
 }
 
 const Detail = (props: Props) => {
@@ -20,9 +25,18 @@ const Detail = (props: Props) => {
           directly minted to their wallet address which can be viewed from
           opensea or rarible
         </div>
-        <button className="text-gabriola cursor-pointer rounded-xl bg-[#912235] py-4 px-8 text-lg text-white">
-          GIFT AN NFT
-        </button>
+        <div className="flex space-x-4">
+          <Link href={props.button_href}>
+            <button className="text-gabriola cursor-pointer rounded-xl bg-[#912235] py-4 px-8 text-lg text-white">
+              {props.button}
+            </button>
+          </Link>
+          <Link href={props.button2_href}>
+            <button className="text-gabriola cursor-pointer rounded-xl bg-[#912235] py-4 px-8 text-lg text-white">
+              {props.button2}
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   )

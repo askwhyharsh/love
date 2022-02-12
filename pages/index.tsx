@@ -1,27 +1,26 @@
+import Head from 'next/head'
+
 import Detail from '../components/Detail'
 import Card from '../components/Card'
 import { useAudioRecorder } from '@sarafhbk/react-audio-recorder'
+import { useEffect } from 'react'
 
-// var videoshow = require('videoshow')
 
 export default function Home() {
   const { audioResult, timer, startRecording, stopRecording, status } =
     useAudioRecorder()
 
-  // let images = [<Card />]
-  // let audio = audioResult
-
-  // videoshow(images)
-  //   .audio(audio)
-  //   .save('video.mp4')
-  //   .on('start', (command) => {
-  //     console.log('ffmpeg process started: ', command)
-  //   })
-  //   .on('error', (err) => console.log('error', err))
-  //   .on('end', (output) => console.log('Video created in: ', output))
+  useEffect(() => {
+    // Audio URL
+    console.log(audioResult)
+  }, [audioResult])
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#FFDDEB] to-[#FFCCD5]">
+      <Head>
+        <title>onchainheart</title>
+      </Head>
+      
       <div
         className="flex flex-col items-center justify-center  py-2 pt-20
     xl:flex-row xl:pt-0"
@@ -29,9 +28,13 @@ export default function Home() {
         <Detail
           title="From your Wallet to 
 your valentines heart"
+          button='GIFT A NFT'
+          button2='REDEEM A NFT'
+          button_href='/'
+          button2_href='/redeem'
         />
         <div className="mt-20 flex w-full justify-center xl:mt-0">
-          <Card />
+          <Card isHome={true} />
         </div>
       </div>
       {/* recording section */}

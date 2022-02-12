@@ -1,14 +1,16 @@
 import { useState } from 'react'
 
-type Props = {}
+type Props = {
+  isHome: boolean
+}
 
 const Card = (props: Props) => {
-  const [toggle, setToggle] = useState(false)
-  const [toggleName, setToggleName] = useState(false)
-  const [name, setName] = useState('')
-  const [desc, setDesc] = useState('')
+  const [toggle, setToggle] = useState(true)
+  const [toggleName, setToggleName] = useState(true)
+  const [name, setName] = useState(props.isHome ? 'Name of your special someone' : 'Your Name')
+  const [desc, setDesc] = useState(props.isHome ? 'Leave a beautiful message for them' : 'Your Special Message')
   return (
-    <svg className="h-[584px] w-[581px]">
+    <svg style={{ height: '584px', width: '581px' }}>
       <image
         href="https://cdn.discordapp.com/attachments/941786627108388904/941789852180037712/NFT_no_.png"
         height="100%"
@@ -26,7 +28,7 @@ const Card = (props: Props) => {
             <p
               onDoubleClick={() => setToggleName(false)}
               style={{ textAlign: 'center', fontWeight: 'bolder' }}
-              className="z-100"
+              className="text-gabriola w-full border-none bg-transparent text-white placeholder-pink-300 outline-none"
               dominant-baseline="middle"
               text-anchor="middle"
             >
@@ -50,7 +52,7 @@ const Card = (props: Props) => {
           {toggle ? (
             <p
               onDoubleClick={() => setToggle(false)}
-              style={{ fontSize: '1rem', height: '200px' }}
+              className="text-gabriola w-full border-none bg-transparent text-center text-2xl text-white placeholder-pink-300 outline-none"
             >
               {desc}
             </p>
