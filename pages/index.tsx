@@ -16,7 +16,7 @@ export default function Home() {
             {toggleName ? 
               <p onDoubleClick={() => setToggleName(false)} style={{ textAlign: 'center', fontWeight: "bolder" }} className='z-100' dominant-baseline="middle" text-anchor="middle"><b>{name}</b></p>
               :
-              <input onDoubleClick={() => setToggleName(true)} maxLength={45} style={{ textAlign: 'center' }} className="bg-transparent w-full" value={name} onChange={(e) => setName(e.target.value)}></input>
+              <input onDoubleClick={() => setToggleName(true)} maxLength={45} style={{ textAlign: 'center', fontWeight: "bolder" }} className="bg-transparent w-full" value={name} onChange={(e) => setName(e.target.value)}></input>
             }
           </foreignObject>
         </switch>
