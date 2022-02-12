@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 type Props = {
   isHome: boolean
@@ -9,8 +9,16 @@ const Card = (props: Props) => {
   const [toggleName, setToggleName] = useState(true)
   const [name, setName] = useState(props.isHome ? 'Name of your special someone' : 'Your Name')
   const [desc, setDesc] = useState(props.isHome ? 'Leave a beautiful message for them' : 'Your Special Message')
+  
+  const nft = useRef<SVGSVGElement>(null)
+
+  useEffect(() => {
+    //svg
+    console.log(btoa(nft.current?.outerHTML as string))
+  }, [nft])
+  
   return (
-    <svg style={{ height: '584px', width: '581px' }}>
+    <svg ref={nft} style={{ height: '584px', width: '581px' }}>
       <image
         href="https://cdn.discordapp.com/attachments/941786627108388904/941789852180037712/NFT_no_.png"
         height="100%"
