@@ -2,12 +2,16 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = {
-  name: string
+  name: string,
+  message: string
 }
 
-export default function handler(
+export default function generateSVG(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  const name = req.body['name']
+  const message = req.body['message']
+
+  res.status(200).send({name, message})
 }
