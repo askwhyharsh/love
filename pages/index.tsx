@@ -3,19 +3,29 @@ import { useState } from 'react'
 
 export default function Home() {
   const [toggle, setToggle] = useState(false)
-  const [name, setName] = useState('fsa')
+  const [toggleName, setToggleName] = useState(false)
+  const [name, setName] = useState('Tanmay Bhat')
+  const [desc, setDesc] = useState('fsa')
   
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <svg className='w-[581px] h-[584px]'>
         <image href="https://cdn.discordapp.com/attachments/941786627108388904/941789852180037712/NFT_no_.png" height="100%" width="100%"/>
-        <text x="50%" y="18%" className='z-100' fontSize={30} dominant-baseline="middle" text-anchor="middle" fill="black">Satyam Kulkarni</text>   
         <switch>
-          <foreignObject x="20%" y="25%" width="65%" height="200">
+          <foreignObject x="19%" y="15%" width="65%" height="60" style={{ fontSize: "30px" }}>
+            {toggleName ? 
+              <p onDoubleClick={() => setToggleName(false)} style={{ textAlign: 'center', fontWeight: "bolder" }} className='z-100' dominant-baseline="middle" text-anchor="middle"><b>{name}</b></p>
+              :
+              <input onDoubleClick={() => setToggleName(true)} maxLength={45} style={{ textAlign: 'center' }} className="bg-transparent w-full" value={name} onChange={(e) => setName(e.target.value)}></input>
+            }
+          </foreignObject>
+        </switch>
+        <switch>
+          <foreignObject x="19%" y="25%" width="65%" height="200">
             {toggle ? 
-              <p onDoubleClick={() => setToggle(false)} style={{ fontSize: "1rem", height: "200px" }}>{name}</p>
+              <p onDoubleClick={() => setToggle(false)} style={{ fontSize: "1rem", height: "200px" }}>{desc}</p>
               : 
-              <textarea onDoubleClick={() => setToggle(true)} className="bg-transparent w-full" rows={8} value={name} onChange={(e) => setName(e.target.value)}></textarea>
+              <textarea onDoubleClick={() => setToggle(true)} maxLength={300} className="bg-transparent w-full" rows={8} value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
             }
           </foreignObject>
         </switch>
