@@ -27,8 +27,7 @@ const Card = (props: Props) => {
           {toggleName ? (
             <p
               onDoubleClick={() => setToggleName(false)}
-              style={{ textAlign: 'center', fontWeight: 'bolder' }}
-              className="text-gabriola w-full border-none bg-transparent text-white placeholder-pink-300 outline-none"
+              style={{ textAlign: 'center', fontWeight: 'bolder', background: 'transparent', border: 'none', width: '100%', color: 'white', outline: 'none', fontFamily: 'gabriola' }}
               dominant-baseline="middle"
               text-anchor="middle"
             >
@@ -38,8 +37,7 @@ const Card = (props: Props) => {
             <input
               onDoubleClick={() => setToggleName(true)}
               maxLength={45}
-              style={{ textAlign: 'center', fontWeight: 'bolder' }}
-              className="text-gabriola w-full border-none bg-transparent text-white placeholder-pink-300 outline-none"
+              style={{ textAlign: 'center', fontWeight: 'bolder', background: 'transparent', border: 'none', width: '100%', color: 'white', outline: 'none', fontFamily: 'gabriola' }}
               value={name}
               placeholder="Name of your special someone"
               onChange={(e) => setName(e.target.value)}
@@ -52,7 +50,7 @@ const Card = (props: Props) => {
           {toggle ? (
             <p
               onDoubleClick={() => setToggle(false)}
-              className="text-gabriola w-full border-none bg-transparent text-center text-2xl text-white placeholder-pink-300 outline-none"
+              style={{ textAlign: 'center', fontWeight: 'bolder', background: 'transparent', border: 'none', width: '100%', color: 'white', outline: 'none', fontFamily: 'gabriola', fontSize: '1.5rem' }}
             >
               {desc}
             </p>
@@ -60,7 +58,7 @@ const Card = (props: Props) => {
             <textarea
               onDoubleClick={() => setToggle(true)}
               maxLength={300}
-              className="text-gabriola w-full border-none bg-transparent text-center text-2xl text-white placeholder-pink-300 outline-none"
+              style={{ textAlign: 'center', fontWeight: 'bolder', background: 'transparent', border: 'none', width: '100%', color: 'white', outline: 'none', fontFamily: 'gabriola', fontSize: '1.5rem' }}
               rows={8}
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
