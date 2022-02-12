@@ -1,109 +1,87 @@
-import Head from 'next/head'
-import { useState } from 'react'
+import Detail from '../components/Detail'
+import Card from '../components/Card'
+import { useAudioRecorder } from '@sarafhbk/react-audio-recorder'
+
+// var videoshow = require('videoshow')
 
 export default function Home() {
-  const [toggle, setToggle] = useState(false)
-  const [toggleName, setToggleName] = useState(false)
-  const [name, setName] = useState('Tanmay Bhat')
-  const [desc, setDesc] = useState('fsa')
-  
+  const { audioResult, timer, startRecording, stopRecording, status } =
+    useAudioRecorder()
+
+  // let images = [<Card />]
+  // let audio = audioResult
+
+  // videoshow(images)
+  //   .audio(audio)
+  //   .save('video.mp4')
+  //   .on('start', (command) => {
+  //     console.log('ffmpeg process started: ', command)
+  //   })
+  //   .on('error', (err) => console.log('error', err))
+  //   .on('end', (output) => console.log('Video created in: ', output))
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <svg className='w-[581px] h-[584px]'>
-        <image href="https://cdn.discordapp.com/attachments/941786627108388904/941789852180037712/NFT_no_.png" height="100%" width="100%"/>
-        <switch>
-          <foreignObject x="19%" y="15%" width="65%" height="60" style={{ fontSize: "30px" }}>
-            {toggleName ? 
-              <p onDoubleClick={() => setToggleName(false)} style={{ textAlign: 'center', fontWeight: "bolder" }} className='z-100' dominant-baseline="middle" text-anchor="middle"><b>{name}</b></p>
-              :
-              <input onDoubleClick={() => setToggleName(true)} maxLength={45} style={{ textAlign: 'center', fontWeight: "bolder" }} className="bg-transparent w-full" value={name} onChange={(e) => setName(e.target.value)}></input>
-            }
-          </foreignObject>
-        </switch>
-        <switch>
-          <foreignObject x="19%" y="25%" width="65%" height="200">
-            {toggle ? 
-              <p onDoubleClick={() => setToggle(false)} style={{ fontSize: "1rem", height: "200px" }}>{desc}</p>
-              : 
-              <textarea onDoubleClick={() => setToggle(true)} maxLength={300} className="bg-transparent w-full" rows={8} value={desc} onChange={(e) => setDesc(e.target.value)}></textarea>
-            }
-          </foreignObject>
-        </switch>
-      </svg>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
-
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
-
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#FFDDEB] to-[#FFCCD5]">
+      <div
+        className="flex flex-col items-center justify-center  py-2 pt-20
+    xl:flex-row xl:pt-0"
+      >
+        <Detail
+          title="From your Wallet to 
+your valentines heart"
+        />
+        <div className="mt-20 flex w-full justify-center xl:mt-0">
+          <Card />
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
+      </div>
+      {/* recording section */}
+      <div>
+        <a className="mb-8 text-xl" href={audioResult} download="test">
+          Status : <b className="text-gray-400">{status}</b>
         </a>
-      </footer>
+        <div>
+          <p>{new Date(timer * 1000).toISOString().substr(11, 8)}</p>
+          <div className="flex space-x-6">
+            <button onClick={startRecording}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                className="iconify iconify--zondicons text-green-400"
+                width="32"
+                height="32"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9 18v-1.06A8 8 0 0 1 2 9h2a6 6 0 1 0 12 0h2a8 8 0 0 1-7 7.94V18h3v2H6v-2h3zM6 4a4 4 0 1 1 8 0v5a4 4 0 1 1-8 0V4z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </button>
+
+            <button onClick={stopRecording}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+                aria-hidden="true"
+                role="img"
+                className="iconify iconify--subway text-red-400"
+                width="32"
+                height="32"
+                preserveAspectRatio="xMidYMid meet"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  d="M465.5 0h-419C20.9 0 0 20.9 0 46.5v418.9C0 491.1 20.9 512 46.5 512h418.9c25.7 0 46.5-20.9 46.5-46.5v-419C512 20.9 491.1 0 465.5 0z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
