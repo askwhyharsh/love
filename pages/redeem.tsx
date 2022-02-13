@@ -20,16 +20,17 @@ export default function Home() {
       <Head>
         <title>redeem your nft - onchainheart</title>
       </Head>
-	  <div
+      <div
         className="flex flex-col items-center justify-center  py-2 pt-20
     xl:flex-row xl:pt-0"
       >
         <Detail
           title="Redeem your love here"
-		  button='REDEEM A NFT'
-          button2='GIFT A NFT'
-		  button_href='/redeem'
-		  button2_href='/'
+          button="REDEEM A NFT"
+          button2="GIFT A NFT"
+          button_href="/redeem"
+          button2_href="/"
+          audio=""
         />
         <div className="mt-20 flex w-full justify-center xl:mt-0">
           <Card isHome={false} />
