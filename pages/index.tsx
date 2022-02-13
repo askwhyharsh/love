@@ -66,7 +66,14 @@ your valentines heart"
       </div>
       {/* recording section */}
       <div className="mb-20 flex flex-col items-center justify-center">
-        <a className="mb-8 text-xl" href={audioResult} download="test">
+        <div className="text-gabriola text-2xl text-[#C24B66]">
+          Record a message and add it to your gift
+        </div>
+        <a
+          className="text-gabriola mb-8 text-2xl text-[#C24B66]"
+          href={audioResult}
+          download="test"
+        >
           Status : <b className="text-gray-400">{status}</b>
         </a>
         <div>
