@@ -5,15 +5,38 @@ import Card from '../components/Card'
 import { useAudioRecorder } from '@sarafhbk/react-audio-recorder'
 import { useEffect } from 'react'
 
+interface Props {
+  nft: any
+  setNFT: any
+}
 
-export default function Home() {
+function blobToBase64(blob: any) {
+	const reader = new FileReader();
+	reader.readAsDataURL(blob);
+	return new Promise(resolve => {
+		reader.onloadend = () => {
+			resolve(reader.result);
+		};
+	});
+};
+
+
+export default function Home({ nft, setNFT }: Props) {
   const { audioResult, timer, startRecording, stopRecording, status } =
-    useAudioRecorder()
+  useAudioRecorder()
 
   useEffect(() => {
     // Audio URL
     console.log(audioResult)
+    fetch(audioResult).then(d => d.blob()).then(s => {
+      console.log(s)
+      blobToBase64(s).then(s => console.log(s))
+    })
   }, [audioResult])
+
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+  })
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-[#FFDDEB] to-[#FFCCD5]">
