@@ -13,27 +13,28 @@ interface Props {
 }
 
 function blobToBase64(blob: any) {
-	const reader = new FileReader();
-	reader.readAsDataURL(blob);
-	return new Promise(resolve => {
-		reader.onloadend = () => {
-			resolve(reader.result);
-		};
-	});
-};
-
+  const reader = new FileReader()
+  reader.readAsDataURL(blob)
+  return new Promise((resolve) => {
+    reader.onloadend = () => {
+      resolve(reader.result)
+    }
+  })
+}
 
 export default function Home({ nft, setNFT, audio, setAudio }: Props) {
   const { audioResult, timer, startRecording, stopRecording, status } =
-  useAudioRecorder()
+    useAudioRecorder()
 
   useEffect(() => {
     // Audio URL
     console.log(audioResult)
-    fetch(audioResult).then(d => d.blob()).then(s => {
-      console.log(s)
-      blobToBase64(s).then(s => setAudio(s))
-    })
+    fetch(audioResult)
+      .then((d) => d.blob())
+      .then((s) => {
+        console.log(s)
+        blobToBase64(s).then((s) => setAudio(s))
+      })
   }, [audioResult])
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function Home({ nft, setNFT, audio, setAudio }: Props) {
       <Head>
         <title>onchainheart</title>
       </Head>
-      
+
       <div
         className="flex flex-col items-center justify-center  py-2 pt-20
     xl:flex-row xl:pt-0"
@@ -53,10 +54,10 @@ export default function Home({ nft, setNFT, audio, setAudio }: Props) {
         <Detail
           title="From your Wallet to 
 your valentines heart"
-          button='GIFT A NFT'
-          button2='REDEEM A NFT'
-          button_href='/'
-          button2_href='/redeem'
+          button="GIFT A NFT"
+          button2="REDEEM A NFT"
+          button_href="/"
+          button2_href="/redeem"
           audio={audio}
         />
         <div className="mt-20 flex w-full justify-center xl:mt-0">
@@ -64,12 +65,12 @@ your valentines heart"
         </div>
       </div>
       {/* recording section */}
-      <div>
+      <div className="mb-20 flex flex-col items-center justify-center">
         <a className="mb-8 text-xl" href={audioResult} download="test">
           Status : <b className="text-gray-400">{status}</b>
         </a>
         <div>
-          <p>{new Date(timer * 1000).toISOString().substr(11, 8)}</p>
+          {/* <p>{new Date(timer * 1000).toISOString().substr(11, 8)}</p> */}
           <div className="flex space-x-6">
             <button onClick={startRecording}>
               <svg
