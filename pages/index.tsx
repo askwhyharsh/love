@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 interface Props {
   nft: any
   setNFT: any
+  audio: string
+  setAudio: Function
 }
 
 function blobToBase64(blob: any) {
@@ -21,7 +23,7 @@ function blobToBase64(blob: any) {
 };
 
 
-export default function Home({ nft, setNFT }: Props) {
+export default function Home({ nft, setNFT, audio, setAudio }: Props) {
   const { audioResult, timer, startRecording, stopRecording, status } =
   useAudioRecorder()
 
@@ -30,7 +32,7 @@ export default function Home({ nft, setNFT }: Props) {
     console.log(audioResult)
     fetch(audioResult).then(d => d.blob()).then(s => {
       console.log(s)
-      blobToBase64(s).then(s => console.log(s))
+      blobToBase64(s).then(s => setAudio(s))
     })
   }, [audioResult])
 
@@ -55,6 +57,7 @@ your valentines heart"
           button2='REDEEM A NFT'
           button_href='/'
           button2_href='/redeem'
+          audio={audio}
         />
         <div className="mt-20 flex w-full justify-center xl:mt-0">
           <Card isHome={true} />
